@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/amroman1337/petstore2024/controllers"
-	"github.com/amroman1337/petstore2024/middleware"
+	"github.com/labstack/echo/v4/middleware"
 
 	"github.com/labstack/echo/v4"
 )
@@ -17,5 +17,4 @@ func InitRoutes(e *echo.Echo) {
 	auth.Use(middleware.JWTWithConfig(middleware.JWTConfig{
 		SigningKey: []byte("your-secret-key"),
 	}))
-	auth.POST("/order", controllers.OrderPet)
 }

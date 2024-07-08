@@ -26,7 +26,6 @@ func main() {
 
 	database.InitDB()
 	routes.InitRoutes(e)
-	routes.InitAuthRoutes(e)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

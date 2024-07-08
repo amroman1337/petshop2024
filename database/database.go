@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/amroman1337/petstore2024/model"
+	"github.com/amroman1337/petstore2024/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,5 +17,5 @@ func InitDB() {
 		panic("failed to connect database")
 	}
 
-	DB.AutoMigrate(&model.Pet{}, &model.User{})
+	DB.AutoMigrate(&models.Pet{}, &models.User{})
 }

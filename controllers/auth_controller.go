@@ -54,7 +54,6 @@ func Login(c echo.Context) error {
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
 // @Router /auth/sign-up [post]
-
 func Logout(c echo.Context) error {
 	// Invalidate the token by setting it to an empty string or using a blacklist
 	return c.JSON(http.StatusOK, map[string]string{"message": "Logged out"})

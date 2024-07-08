@@ -12,18 +12,14 @@ import (
 
 var jwtSecret = []byte("your-secret-key")
 
-// @Summary SignIn
+// @Summary Login a user
+// @Description Login a user with the input payload
 // @Tags auth
-// @Description login
-// @ID login
 // @Accept  json
 // @Produce  json
-// @Param input body signInInput true "credentials"
-// @Success 200 {string} string "token"
-// @Failure 400,404 {object} errorResponse
-// @Failure 500 {object} errorResponse
-// @Failure default {object} errorResponse
-// @Router /auth/sign-in [post]
+// @Param user body models.User true "User information"
+// @Success 200 {object} map[string]string
+// @Router /auth/login [post]
 func Login(c echo.Context) error {
 	username := c.FormValue("username")
 	password := c.FormValue("password")
@@ -42,18 +38,13 @@ func Login(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]string{"token": t})
 }
 
-// @Summary SignUp
+// @Summary Logout a user
+// @Description Logout a user
 // @Tags auth
-// @Description create account
-// @ID create-account
 // @Accept  json
 // @Produce  json
-// @Param input body todo.User true "account info"
-// @Success 200 {integer} integer 1
-// @Failure 400,404 {object} errorResponse
-// @Failure 500 {object} errorResponse
-// @Failure default {object} errorResponse
-// @Router /auth/sign-up [post]
+// @Success 200 {object} map[string]string
+// @Router /auth/logout [post]
 func Logout(c echo.Context) error {
 	// Invalidate the token by setting it to an empty string or using a blacklist
 	return c.JSON(http.StatusOK, map[string]string{"message": "Logged out"})

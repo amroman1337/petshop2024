@@ -18,3 +18,8 @@ func InitRoutes(e *echo.Echo) {
 		SigningKey: []byte("your-secret-key"),
 	}))
 }
+
+func InitAuthRoutes(e *echo.Echo) {
+	e.POST("/auth/login", controllers.Login)
+	e.POST("/auth/logout", controllers.Logout)
+}

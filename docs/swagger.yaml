@@ -2,6 +2,8 @@ basePath: /
 definitions:
   models.Pet:
     properties:
+      Petid:
+        type: integer
       age:
         type: integer
       color:
@@ -15,6 +17,7 @@ definitions:
       type:
         type: string
     required:
+    - Petid
     - age
     - color
     - gender
@@ -24,12 +27,18 @@ definitions:
     type: object
   models.User:
     properties:
+      Email:
+        type: string
       Password:
         type: string
+      Userid:
+        type: integer
       Username:
         type: string
     required:
+    - Email
     - Password
+    - Userid
     - Username
     type: object
 host: localhost:8080
@@ -133,6 +142,43 @@ paths:
       summary: Update pet by ID
       tags:
       - pets
+  /pets/filter:
+    get:
+      consumes:
+      - application/json
+      description: Filter pets by type, age, species, gender, and color
+      operationId: filter-pets
+      parameters:
+      - description: Type of pet
+        in: query
+        name: type
+        type: string
+      - description: Age of pet
+        in: query
+        name: age
+        type: integer
+      - description: Species of pet
+        in: query
+        name: species
+        type: string
+      - description: Gender of pet
+        in: query
+        name: gender
+        type: string
+      - description: Color of pet
+        in: query
+        name: color
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Pet'
+            type: array
+      summary: Filter pets
   /users:
     post:
       consumes:

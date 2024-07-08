@@ -58,6 +58,62 @@ const docTemplate = `{
                 }
             }
         },
+        "/pets/filter": {
+            "get": {
+                "description": "Filter pets by type, age, species, gender, and color",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Filter pets",
+                "operationId": "filter-pets",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Type of pet",
+                        "name": "type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Age of pet",
+                        "name": "age",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Species of pet",
+                        "name": "species",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Gender of pet",
+                        "name": "gender",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Color of pet",
+                        "name": "color",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Pet"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/pets/{id}": {
             "get": {
                 "description": "Get pet information by ID",
@@ -329,6 +385,7 @@ const docTemplate = `{
         "models.Pet": {
             "type": "object",
             "required": [
+                "Petid",
                 "age",
                 "color",
                 "gender",
@@ -337,6 +394,9 @@ const docTemplate = `{
                 "type"
             ],
             "properties": {
+                "Petid": {
+                    "type": "integer"
+                },
                 "age": {
                     "type": "integer"
                 },
@@ -360,12 +420,20 @@ const docTemplate = `{
         "models.User": {
             "type": "object",
             "required": [
+                "Email",
                 "Password",
+                "Userid",
                 "Username"
             ],
             "properties": {
+                "Email": {
+                    "type": "string"
+                },
                 "Password": {
                     "type": "string"
+                },
+                "Userid": {
+                    "type": "integer"
                 },
                 "Username": {
                     "type": "string"

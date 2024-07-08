@@ -15,7 +15,7 @@ import (
 // @Tags pets
 // @Accept  json
 // @Produce  json
-// @Param user body models.Pet true "Pet information"
+// @Param input body models.Pet true "Pet information"
 // @Success 201 {object} models.Pet
 // @Router /pets [post]
 func CreatePet(c echo.Context) error {

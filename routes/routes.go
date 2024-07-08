@@ -13,13 +13,13 @@ func InitRoutes(e *echo.Echo) {
 	e.PUT("/pets/:id", controllers.UpdatePet)
 	e.DELETE("/pets/:id", controllers.DeletePet)
 
-	auth := e.Group("/auth")
-	auth.Use(middleware.JWTWithConfig(middleware.JWTConfig{
+	users := e.Group("/users")
+	users.Use(middleware.JWTWithConfig(middleware.JWTConfig{
 		SigningKey: []byte("your-secret-key"),
 	}))
 }
 
 func InitAuthRoutes(e *echo.Echo) {
-	e.POST("/auth/login", controllers.Login)
-	e.POST("/auth/logout", controllers.Logout)
+	e.POST("/users/login", controllers.Login)
+	e.POST("/users/logout", controllers.Logout)
 }

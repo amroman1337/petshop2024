@@ -1,9 +1,6 @@
 package models
 
-import "gorm.io/gorm"
-
 type Pet struct {
-	gorm.Model
 	Type    string `json:"type" binding:"required"`
 	Name    string `json:"name" binding:"required"`
 	Age     int    `json:"age" binding:"required"`
@@ -13,7 +10,6 @@ type Pet struct {
 }
 
 type User struct {
-	gorm.Model
 	Username string `gorm:"unique" json:"Username" binding:"required"`
 	Password string `json:"Password" binding:"required"`
 }

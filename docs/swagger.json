@@ -321,7 +321,19 @@
     },
     "definitions": {
         "models.Pet": {
-            "type": "object"
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
         },
         "models.User": {
             "type": "object"

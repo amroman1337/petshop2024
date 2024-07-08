@@ -1,8 +1,36 @@
 basePath: /
 definitions:
   models.Pet:
+    properties:
+      age:
+        type: integer
+      color:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      species:
+        type: string
+      type:
+        type: string
+    required:
+    - age
+    - color
+    - gender
+    - name
+    - species
+    - type
     type: object
   models.User:
+    properties:
+      Password:
+        type: string
+      Username:
+        type: string
+    required:
+    - Password
+    - Username
     type: object
 host: localhost:8080
 info:

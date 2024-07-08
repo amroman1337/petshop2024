@@ -327,10 +327,50 @@ const docTemplate = `{
     },
     "definitions": {
         "models.Pet": {
-            "type": "object"
+            "type": "object",
+            "required": [
+                "age",
+                "color",
+                "gender",
+                "name",
+                "species",
+                "type"
+            ],
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "species": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
         },
         "models.User": {
-            "type": "object"
+            "type": "object",
+            "required": [
+                "Password",
+                "Username"
+            ],
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "Username": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`

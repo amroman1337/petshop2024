@@ -323,20 +323,48 @@
         "models.Pet": {
             "type": "object",
             "required": [
-                "password",
-                "username"
+                "age",
+                "color",
+                "gender",
+                "name",
+                "species",
+                "type"
             ],
             "properties": {
-                "password": {
+                "age": {
+                    "type": "integer"
+                },
+                "color": {
                     "type": "string"
                 },
-                "username": {
+                "gender": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "species": {
+                    "type": "string"
+                },
+                "type": {
                     "type": "string"
                 }
             }
         },
         "models.User": {
-            "type": "object"
+            "type": "object",
+            "required": [
+                "Password",
+                "Username"
+            ],
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "Username": {
+                    "type": "string"
+                }
+            }
         }
     }
 }

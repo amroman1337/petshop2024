@@ -30,7 +30,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	database.InitDB()
-	routes.InitRoutes(e)
+	routes.InitRoutes(e, database.DB)
 	routes.InitAuthRoutes(e)
 
 	e.GET("/swagger/*", echoSwagger.WrapHandler)

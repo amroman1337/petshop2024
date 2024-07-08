@@ -14,6 +14,7 @@ func InitRoutes(e *echo.Echo, db *gorm.DB) {
 	e.PUT("/pets/:id", controllers.UpdatePet)
 	e.DELETE("/pets/:id", controllers.DeletePet)
 	e.POST("/pets/filter", controllers.FilterPets(db))
+	e.POST("/order/:id", controllers.OrderPet(db))
 	users := e.Group("/users")
 	users.Use(middleware.JWTWithConfig(middleware.JWTConfig{
 		SigningKey: []byte("your-secret-key"),

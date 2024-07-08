@@ -10,9 +10,9 @@ import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
-// @title PetShop by Roman
+// @title PetStore by Roman
 // @version 1.0
-// @description Backend practika
+// @description Backend practika MAI
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name API Support

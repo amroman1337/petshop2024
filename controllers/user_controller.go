@@ -11,6 +11,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
 )
 
 // @Summary SignUp
@@ -105,4 +106,42 @@ func Login(c echo.Context) error {
 func Logout(c echo.Context) error {
 	// Invalidate the token by setting it to an empty string or using a blacklist
 	return c.JSON(http.StatusOK, map[string]string{"message": "Logged out"})
+}
+
+// @Summary Order a pet
+// @Description Order a pet by ID
+// @ID order-pet
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Pet ID"
+// @Success 200 {object} models.Pet
+// @Router /pets/order/{id} [post]
+func OrderPet(db *gorm.DB) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		user := c.Get("user").(*jwt.Token)
+		claims := user.Claims.(jwt.MapClaims)
+		username := claims["username"].(string)
+
+		var currentUser models.User
+		if err := db.Where("username = ?", username).First(&currentUser).Error; err != nil {
+			return c.JSON(http.StatusUnauthorized, "User not found")
+		}
+
+		petID, err := strconv.Atoi(c.Param("id"))
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, "Invalid pet ID")
+		}
+
+		var pet models.Pet
+		if err := db.First(&pet, petID).Error; err != nil {
+			return c.JSON(http.StatusNotFound, "Pet not found")
+		}
+
+		pet.OrderedBy = uint(currentUser.Userid)
+		if err := db.Save(&pet).Error; err != nil {
+			return c.JSON(http.StatusInternalServerError, "Failed to update pet order")
+		}
+
+		return c.JSON(http.StatusOK, pet)
+	}
 }

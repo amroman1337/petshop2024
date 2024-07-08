@@ -5,13 +5,14 @@ import (
 )
 
 type Pet struct {
-	Petid   int    `json:"Petid" binding:"required"`
-	Type    string `json:"type" binding:"required"`
-	Name    string `json:"name" binding:"required"`
-	Age     int    `json:"age" binding:"required"`
-	Species string `json:"species" binding:"required"`
-	Gender  string `json:"gender" binding:"required"`
-	Color   string `json:"color" binding:"required"`
+	Petid     int    `json:"Petid" binding:"required"`
+	Type      string `json:"type" binding:"required"`
+	Name      string `json:"name" binding:"required"`
+	Age       int    `json:"age" binding:"required"`
+	Species   string `json:"species" binding:"required"`
+	Gender    string `json:"gender" binding:"required"`
+	Color     string `json:"color" binding:"required"`
+	OrderedBy uint   `json:"orderedBy"`
 }
 
 type User struct {

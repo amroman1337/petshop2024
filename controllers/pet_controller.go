@@ -78,7 +78,7 @@ func DeletePet(c echo.Context) error {
 
 // @Summary Filter pets
 // @Description Filter pets by type, age, species, gender, and color
-// @ID filter-pets
+// @Tags pets
 // @Accept  json
 // @Produce  json
 // @Param type query string false "Type of pet"

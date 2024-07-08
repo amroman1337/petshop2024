@@ -4,54 +4,20 @@ definitions:
     type: object
   models.User:
     type: object
-host: localhost:8000
+host: localhost:8080
 info:
-  contact: {}
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
   description: Backend practika
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
   title: PetShop by Roman
   version: "1.0"
 paths:
-  /auth/login:
-    post:
-      consumes:
-      - application/json
-      description: Login a user with the input payload
-      parameters:
-      - description: User information
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/models.User'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            additionalProperties:
-              type: string
-            type: object
-      summary: Login a user
-      tags:
-      - auth
-  /auth/logout:
-    post:
-      consumes:
-      - application/json
-      description: Logout a user
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            additionalProperties:
-              type: string
-            type: object
-      summary: Logout a user
-      tags:
-      - auth
   /pets:
     post:
       consumes:
@@ -60,7 +26,7 @@ paths:
       parameters:
       - description: Pet information
         in: body
-        name: user
+        name: input
         required: true
         schema:
           $ref: '#/definitions/models.Pet'
@@ -208,9 +174,45 @@ paths:
       summary: Update user by ID
       tags:
       - users
-securityDefinitions:
-  ApiKeyAuth:
-    in: header
-    name: Authorization
-    type: apiKey
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Login a user with the input payload
+      parameters:
+      - description: User information
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login a user
+      tags:
+      - users
+  /users/logout:
+    post:
+      consumes:
+      - application/json
+      description: Logout a user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Logout a user
+      tags:
+      - users
 swagger: "2.0"

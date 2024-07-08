@@ -12,6 +12,8 @@ definitions:
         type: string
       name:
         type: string
+      orderedBy:
+        type: integer
       species:
         type: string
       type:
@@ -47,12 +49,12 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: Backend practika
+  description: Backend practika MAI
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: PetShop by Roman
+  title: PetStore by Roman
   version: "1.0"
 paths:
   /pets:
@@ -147,7 +149,6 @@ paths:
       consumes:
       - application/json
       description: Filter pets by type, age, species, gender, and color
-      operationId: filter-pets
       parameters:
       - description: Type of pet
         in: query
@@ -179,6 +180,28 @@ paths:
               $ref: '#/definitions/models.Pet'
             type: array
       summary: Filter pets
+      tags:
+      - pets
+  /pets/order/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Order a pet by ID
+      operationId: order-pet
+      parameters:
+      - description: Pet ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Pet'
+      summary: Order a pet
   /users:
     post:
       consumes:

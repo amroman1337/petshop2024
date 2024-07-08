@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Backend practika",
-        "title": "PetShop by Roman",
+        "description": "Backend practika MAI",
+        "title": "PetStore by Roman",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
@@ -61,8 +61,10 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "pets"
+                ],
                 "summary": "Filter pets",
-                "operationId": "filter-pets",
                 "parameters": [
                     {
                         "type": "string",
@@ -103,6 +105,36 @@
                             "items": {
                                 "$ref": "#/definitions/models.Pet"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/pets/order/{id}": {
+            "post": {
+                "description": "Order a pet by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Order a pet",
+                "operationId": "order-pet",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Pet ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pet"
                         }
                     }
                 }
@@ -402,6 +434,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "orderedBy": {
+                    "type": "integer"
                 },
                 "species": {
                     "type": "string"

@@ -67,8 +67,10 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "pets"
+                ],
                 "summary": "Filter pets",
-                "operationId": "filter-pets",
                 "parameters": [
                     {
                         "type": "string",
@@ -109,6 +111,36 @@ const docTemplate = `{
                             "items": {
                                 "$ref": "#/definitions/models.Pet"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/pets/order/{id}": {
+            "post": {
+                "description": "Order a pet by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Order a pet",
+                "operationId": "order-pet",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Pet ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pet"
                         }
                     }
                 }
@@ -409,6 +441,9 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
+                "orderedBy": {
+                    "type": "integer"
+                },
                 "species": {
                     "type": "string"
                 },
@@ -449,8 +484,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "PetShop by Roman",
-	Description:      "Backend practika",
+	Title:            "PetStore by Roman",
+	Description:      "Backend practika MAI",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

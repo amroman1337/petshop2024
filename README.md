@@ -9,3 +9,6 @@
 ### Swagger UI:
 
 http://localhost:8080/swagger/index.html#/
+
+
+![architecture](https://github.com/amroman1337/petstore2024/assets/144627459/4932aeb6-d7e5-4750-b806-a7bfe57d3ace)

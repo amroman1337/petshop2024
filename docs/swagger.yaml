@@ -1,5 +1,10 @@
 basePath: /
 definitions:
+  controllers.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
   models.Pet:
     properties:
       Petid:
@@ -72,10 +77,26 @@ paths:
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
             $ref: '#/definitions/models.Pet'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Create new pet
       tags:
       - pets
@@ -95,6 +116,22 @@ paths:
       responses:
         "204":
           description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Delete pet by ID
       tags:
       - pets
@@ -115,6 +152,22 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.Pet'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Get pet by ID
       tags:
       - pets
@@ -141,6 +194,22 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.Pet'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Update pet by ID
       tags:
       - pets
@@ -179,6 +248,22 @@ paths:
             items:
               $ref: '#/definitions/models.Pet'
             type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Filter pets
       tags:
       - pets
@@ -187,7 +272,6 @@ paths:
       consumes:
       - application/json
       description: Order a pet by ID
-      operationId: order-pet
       parameters:
       - description: Pet ID
         in: path
@@ -201,7 +285,25 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.Pet'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Order a pet
+      tags:
+      - users
   /users:
     post:
       consumes:
@@ -221,6 +323,22 @@ paths:
           description: Created
           schema:
             $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: SignUp
       tags:
       - users
@@ -242,6 +360,22 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Get user by ID
       tags:
       - users
@@ -268,6 +402,22 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Update user by ID
       tags:
       - users
@@ -292,6 +442,22 @@ paths:
             additionalProperties:
               type: string
             type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Login a user
       tags:
       - users
@@ -309,6 +475,22 @@ paths:
             additionalProperties:
               type: string
             type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.errorResponse'
       summary: Logout a user
       tags:
       - users

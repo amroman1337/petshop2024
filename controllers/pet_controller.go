@@ -17,7 +17,10 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param input body models.Pet true "Pet information"
-// @Success 201 {object} models.Pet
+// @Success 200 {object} models.Pet
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets [post]
 func CreatePet(c echo.Context) error {
 	pet := new(models.Pet)
@@ -35,6 +38,9 @@ func CreatePet(c echo.Context) error {
 // @Produce  json
 // @Param id path int true "Pet ID"
 // @Success 200 {object} models.Pet
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets/{id} [get]
 func GetPet(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -51,6 +57,9 @@ func GetPet(c echo.Context) error {
 // @Param id path int true "Pet ID"
 // @Param pet body models.Pet true "Pet information"
 // @Success 200 {object} models.Pet
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets/{id} [put]
 func UpdatePet(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -69,6 +78,9 @@ func UpdatePet(c echo.Context) error {
 // @Produce  json
 // @Param id path int true "Pet ID"
 // @Success 204 "No Content"
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets/{id} [delete]
 func DeletePet(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -87,6 +99,9 @@ func DeletePet(c echo.Context) error {
 // @Param gender query string false "Gender of pet"
 // @Param color query string false "Color of pet"
 // @Success 200 {array} models.Pet
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets/filter [get]
 func FilterPets(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {

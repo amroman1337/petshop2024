@@ -21,6 +21,9 @@ import (
 // @Produce  json
 // @Param user body models.User true "User information"
 // @Success 201 {object} models.User
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /users [post]
 func CreateUser(c echo.Context) error {
 	user := new(models.User)
@@ -41,6 +44,9 @@ func CreateUser(c echo.Context) error {
 // @Produce  json
 // @Param id path int true "User ID"
 // @Success 200 {object} models.User
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /users/{id} [get]
 func GetUser(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -57,6 +63,9 @@ func GetUser(c echo.Context) error {
 // @Param id path int true "User ID"
 // @Param user body models.User true "User information"
 // @Success 200 {object} models.User
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /users/{id} [put]
 func UpdateUser(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -77,6 +86,9 @@ var jwtSecret = []byte("your-secret-key")
 // @Produce  json
 // @Param input body models.User true "User information"
 // @Success 200 {object} map[string]string
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /users/login [post]
 func Login(c echo.Context) error {
 	username := c.FormValue("username")
@@ -102,6 +114,9 @@ func Login(c echo.Context) error {
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} map[string]string
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /users/logout [post]
 func Logout(c echo.Context) error {
 	// Invalidate the token by setting it to an empty string or using a blacklist
@@ -110,11 +125,14 @@ func Logout(c echo.Context) error {
 
 // @Summary Order a pet
 // @Description Order a pet by ID
-// @ID order-pet
+// @Tags users
 // @Accept  json
 // @Produce  json
 // @Param id path int true "Pet ID"
 // @Success 200 {object} models.Pet
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
 // @Router /pets/order/{id} [post]
 func OrderPet(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
